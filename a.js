@@ -627,7 +627,7 @@ cc.Class({
 		}
 		function isSanDaiYi(poker){
 			cc.log("begin (isSanDaiYi)");
-			for(var i=0;i<=poker.length-1;i++)if(poker[i]==14)return false;
+			for(var i=0;i<=poker.length-1;i++)if(poker[i]==14)return -1;
 			if(poker.length>=6||poker.length<=3)return -1;
 			if(poker.length==4){
 				if(poker[0]==poker[1]&&poker[1]==poker[2]&&poker[2]!=poker[3])return poker[0];
@@ -641,7 +641,7 @@ cc.Class({
 		}
 		function isFeiJi(poker){
 			cc.log("begin (isFeiJi)");
-			for(var i=0;i<=poker.length-1;i++)if(poker[i]==14)return false;
+			for(var i=0;i<=poker.length-1;i++)if(poker[i]==14)return -1;
 			//统计每个size的数量
 			//for(var i=0;i<=poker.length-1;i++)cc.log("----"+i+"--pai-->"+poker[i]);
 			var pai=new Array(13);for(var i=0;i<=12;i++)pai[i]=0;
@@ -701,9 +701,9 @@ cc.Class({
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -733,15 +733,15 @@ cc.Class({
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -770,15 +770,15 @@ cc.Class({
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -797,15 +797,15 @@ cc.Class({
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -818,25 +818,25 @@ cc.Class({
 			//从王牌前的非炸弹中选顺子：
 			for(var i=nowpoker[0]+1;i<=13-(nowpoker.length-1);i++){
 				var is_=true;
-				for(j=1;j<=nowpoker.length;j++)if(paisum[i+j-1]<1||paisum[i+j-1]>3)is_=false;
+				for(var j=1;j<=nowpoker.length;j++)if(paisum[i+j-1]<1||paisum[i+j-1]>3)is_=false;
 				if(is_){
 					var a=new Array(nowpoker.length);
-					for(j=1;j<=nowpoker.length;j++)a[j-1]=i+j-1;
+					for(var j=1;j<=nowpoker.length;j++)a[j-1]=i+j-1;
 					return a;
 				}
 			}
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -849,10 +849,10 @@ cc.Class({
 			//从王牌前的长度2~3中选2顺：
 			for(var i=nowpoker[0]+1;i<=13-(nowpoker.length/2-1);i++){
 				var is_=true;
-				for(j=1;j<=nowpoker.length/2;j++)if(paisum[i+j-1]<=1||paisum[i+j-1]>=4)is_=false;
+				for(var j=1;j<=nowpoker.length/2;j++)if(paisum[i+j-1]<=1||paisum[i+j-1]>=4)is_=false;
 				if(is_){
 					var a=new Array(nowpoker.length);
-					for(j=1;j<=nowpoker.length/2;j++){
+					for(var j=1;j<=nowpoker.length/2;j++){
 						a[j*2-2]=i+j-1;
 						a[j*2-1]=i+j-1;
 					}
@@ -862,15 +862,15 @@ cc.Class({
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -883,10 +883,10 @@ cc.Class({
 			//从王牌前的长度3中选3顺：
 			for(var i=nowpoker[0]+1;i<=13-(nowpoker.length/3-1);i++){
 				var is_=true;
-				for(j=1;j<=nowpoker.length/3;j++)if(paisum[i+j-1]<=2||paisum[i+j-1]>=4)is_=false;
+				for(var j=1;j<=nowpoker.length/3;j++)if(paisum[i+j-1]<=2||paisum[i+j-1]>=4)is_=false;
 				if(is_){
 					var a=new Array(nowpoker.length);
-					for(j=1;j<=nowpoker.length/3;j++){
+					for(var j=1;j<=nowpoker.length/3;j++){
 						a[j*3-3]=i+j-1;
 						a[j*3-2]=i+j-1;
 						a[j*3-1]=i+j-1;
@@ -897,15 +897,15 @@ cc.Class({
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -956,15 +956,15 @@ cc.Class({
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
@@ -981,7 +981,7 @@ cc.Class({
 			//从王牌前的长度3中选3顺：
 			for(var i=min+1;i<=13-(max-min);i++){//找开头
 				var is_=true;
-				for(j=1;j<=(max-min+1);j++)if(paisum[i+j-1]<=2||paisum[i+j-1]>=4)is_=false;//找三顺
+				for(var j=1;j<=(max-min+1);j++)if(paisum[i+j-1]<=2||paisum[i+j-1]>=4)is_=false;//找三顺
 				if(is_){//如果三顺找到了
 					var sum=0;//表示附带牌的总数
 					var a=new Array(nowpoker.length);
@@ -997,7 +997,7 @@ cc.Class({
 							}
 						}
 					if(sum/len_small>=max-min+1){//如果附带找齐了
-						for(j=1;j<=max-min+1;j++){
+						for(var j=1;j<=max-min+1;j++){
 						    a[(max-min+1)*len_small+j*3-3]=i+j-1;//在附带牌的后面加上三顺，(max-min+1)*len_small是附带牌的占位
 						    a[(max-min+1)*len_small+j*3-2]=i+j-1;
 						    a[(max-min+1)*len_small+j*3-1]=i+j-1;
@@ -1009,15 +1009,15 @@ cc.Class({
 			//是否出炸弹:
 			if(Math.random()<0.5){//随机确定  出炸弹火箭系列 or 不出牌
 			for(var i=1;i<=14;i++){
-				if(paisum[i]==4&&i>nowpoker[0]){//出炸弹
+				if(paisum[i]==4){//出炸弹
 					var a=new Array(4);
 					for(var j=0;j<=3;j++)a[j]=i;
 					return a;
 				}
 			}
-			if(paisum[i]==2&&i==14){//出火箭
+			if(paisum[14]==2){//出火箭
 				var a=new Array(2);
-				for(var j=0;j<=1;j++)a[j]=i;
+				for(var j=0;j<=1;j++)a[j]=14;
 				return a;
 			}
 			}
