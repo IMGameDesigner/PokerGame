@@ -9,6 +9,6 @@
 
 ### Documentation
 
-* [1.0原版js](http://github.com/IMGameDesigner/PokerGame/a.js)
+* [1.0原版js](https://github.com/IMGameDesigner/PokerGame/blob/master/a.js)
 * [1.1修改AI_chupai的bug并改为java](https://github.com/IMGameDesigner/PokerGame/landowner.java)
 
