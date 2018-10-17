@@ -1,4 +1,4 @@
-* 满意请给个star
+### 满意请给个star
 ### [1.0原版js](https://github.com/IMGameDesigner/PokerGame/blob/master/a.js)
 * 针对CocosCreator1.9.3,一副牌斗地主
 * onload方法：内含测试数据和使用方法
